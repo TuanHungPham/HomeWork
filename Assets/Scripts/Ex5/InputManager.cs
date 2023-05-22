@@ -8,12 +8,13 @@ public class InputManager : MonoBehaviour
     #region public var
     public bool IsMovingInput { get => isMovingInput; private set => isMovingInput = value; }
     public bool IsJumpingInput { get => isJumpingInput; private set => isJumpingInput = value; }
+    public bool IsShootingInput { get => isShootingInput; set => isShootingInput = value; }
     #endregion
 
     #region private var
     [SerializeField] private bool isMovingInput;
     [SerializeField] private bool isJumpingInput;
-
+    [SerializeField] private bool isShootingInput;
     #endregion
 
     private void Awake()
@@ -30,6 +31,18 @@ public class InputManager : MonoBehaviour
     {
         CheckMovingInput();
         CheckJumpingInput();
+        CheckShootingInput();
+    }
+
+    private void CheckShootingInput()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            isShootingInput = true;
+            return;
+        }
+
+        isShootingInput = false;
     }
 
     private void CheckMovingInput()
