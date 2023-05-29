@@ -12,6 +12,7 @@ public class MoveToCursor : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Vector3 mouseWorldPos;
     [SerializeField] private Rigidbody2D rb2d;
+    [SerializeField] private Vector3 direction;
     #endregion
 
     private void Awake()
@@ -32,6 +33,7 @@ public class MoveToCursor : MonoBehaviour
     private void Update()
     {
         GetMousePos();
+        // GetMovingDirection();
     }
 
     private void FixedUpdate()
@@ -42,6 +44,12 @@ public class MoveToCursor : MonoBehaviour
     private void GetMousePos()
     {
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private void GetMovingDirection()
+    {
+        direction = mouseWorldPos - transform.position;
+        direction.Normalize();
     }
 
     private void MoveToMousePos()
